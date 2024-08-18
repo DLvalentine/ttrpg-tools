@@ -5,7 +5,7 @@ info:
   name: (Dev) Gems
   description: Test table containing gems
   diceString: d6 # only one result, for testing
-  properties: [gem]
+  exposed: [gem]
 values:
   - roll: 1
     gem: Ruby

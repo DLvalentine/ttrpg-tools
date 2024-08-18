@@ -5,14 +5,14 @@ info:
   name: (Dev) Loot
   description: Test table containing loot rewards
   diceString: d1 # only one result, for testing
-  properties: [description, contents]
+  exposed: [description, contents]
   dependencies: [devGems] # TODO need to document this: can either be array of filenames in same path, or list of dependency objects: {tablename, filename, path} of which only two (tablename and path) are really required
     #- tablename: devGems
     #  filename: devGems
     #  path: "./tools-libs/random-tables/data/tables/someOtherPath/"
 values:
   - roll: 1
-    flags: [nested_contents, plural]
+    flags: [nested_contents, plural] # TODO document flags
     contents: devGems
-    quantity: 2
+    quantity: [1, 4] # TODO document quantity field
     description: A sack of gems

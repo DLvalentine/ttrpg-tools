@@ -1,6 +1,3 @@
-// -- DOCS --
-// TODO: document flags in _template.yaml
-
 // -- DISPLAY --
 // TODO: display style? would be cool to display things instead of dumping the table. Could use YAML's multi-line string thing and add the field like so: [result] to "inject" it
 // TODO: printf formatting in tables? Should that be another flag? Should that just be the multi-line thing I describe above?
@@ -100,8 +97,10 @@ const rollTable = (table) => {
                     if(nestedField) {
                         const quantity = rolledQuantity || result.quantity || value.quantity;
 
+                        // TODO / NOTE: plural currently only affects the first nested field. probably need to go the plural_field route and verify that way, in the event that you have multiple plural nested fields
+                        // TODO: I'll take care of that once I get caught up on documentation
+                        // TODO: update documentation once this is working
                         if(value.flags.find(flag => flag.includes(flags.plural)) && quantity) {
-                            // TODO: call rollNested _.times(quantity) or whatever and merge
                             let pluralResult = [];
                             
                             _.times(quantity, () => {

@@ -1,15 +1,23 @@
 # _template.yaml -> Name of file. Ideally matches what is used as its internal name in manifest.yaml 
 # Description of table, reference materials, when to use, etc.
-# TODO: add supported flag documentation
-# TODO: add dependencies documentation
 
 info:
   name: Template Table # Display name: what will be shown to user when listing tables
   description: To be used to demonstrate usage of random-tables.js # Short description of what the table does or is for
   diceString: d6 # Valid formatted dice string to be used by dice.js when rolling against this table. We don't necessarily need it, but it adds a layer of reliability to your data. We could have used a d2 here, but wanted to show off ranges below.
   exposed: [result] # Exposed fields of `table` below, that you wish to have returned from the table roll. `roll` should generally be left out of this list.
+# dependencies: [fileName] # If provided like this, table name will be the filename, and it is assume the dependency is in the same path as this table
+# ...or...
+# dependencies:
+  #- tablename: tablename # if tablename and filename are the same, you can just provide one or the other. If they're different, provide both. Probably more reliable to just provide both
+  #  filename: filename
+  #  path: path # needs to be fully qualified path starting from path of ttrpg-tools.js
 values:
   - roll: 1 # Value to be compared against to select the result
+#   flags: [nested_<field>, plural] # Special features for rolls. nested_<field> assumes the field is a table name, and will roll on that table for its value. plural requires a nested field and  a `quantity` field and will roll that nested field that many times. # TODO update plural
     result: Some Result # Whatever you want it to be. Right now this is a string. Additional fields to be added at your discretion
+#   quantity: 2 # If plural, that's how many times we'll roll the nested table. Otherwise, this is just a plain old field.
+#   ...or...
+#   quantity: [1, 4] # Behaves similarly to quantity, but we'll randomly determine what the quantity will be within range a..b
   - roll: [2, 6] # Similar to single rolls, but this should be a range. E.g. if a 2, 4, 5, or 6 is rolled, we will get this result
     result: Some Ranged Result

@@ -1,6 +1,5 @@
 # manifest.yaml
 # Used to hold the paths to tables that can be loaded into random-tables.js
-# TODO would be nice to have a concept of ondemand/load-time if we end up with a sufficiently large number of tables
 
 # paths
 # Used to create anchors that point to table paths. Default is ./tools-libs/random-tables/data/tables/ that should exist in the same directory as manifest. If you want to break them up...

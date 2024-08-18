@@ -1,7 +1,7 @@
 // TODO: Support nested tables: either results, rolls, or both? I think nested results are more viable. E.g. a loot table where a "sack of gems" contains a gem type
 // TODO: Support flags: may need a more robust way of doing it, but maintain the list in _template.yaml in new roll type examples to show what flags are available and how they work. I'm using strings because they're easier to read, but not as performant
-// TODO: table manifest dependencies, or other validation (dependencies should be hidden?) - may want to refactor loadTable/load..Manifest to make this cleaner, too. E.g. loadManifest just reads the list, loadTable appends to the tables obj, etc.
 // TODO: display style? would be cool to display things instead of dumping the table
+// TODO: func documentation
 import _ from 'lodash';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
@@ -9,10 +9,26 @@ import dice from '../dice/dice.js';
 
 let tables = {};
 
-const loadTable = (path) => {
+const readYAML = (path) => {
+    const raw = fs.readFileSync(path, 'utf8');
+    return yaml.load(raw);
+}
+
+const loadTable = (tableName, path, filename) => {
     try {
-        const contents = fs.readFileSync(path, 'utf8');
-        return yaml.load(contents);        
+        const data = readYAML(`${path}${filename}.yaml`);
+        if(data) {
+            tables[tableName] = data;
+
+            if(data.info.dependencies) {
+                data.info.dependencies.forEach(dep => {
+                    loadTable(dep, path, dep);
+                });
+            }
+        } else {
+            console.error(`[ERROR] Table ${tableName} has no data.`);
+            return;
+        }
     } catch (e) {
         console.error(`[ERROR] Unable to load table: ${e}`);
         return;
@@ -20,21 +36,16 @@ const loadTable = (path) => {
 };
 
 const loadTablesFromManifest = () => {
-    tables = {};
-    const manifest = loadTable('./tools-libs/random-tables/data/manifest.yaml');
+    const manifest = readYAML('./tools-libs/random-tables/data/manifest.yaml');
 
     for (const [tableName, {path, filename, hidden}] of Object.entries(manifest.tables)) {
         if(!hidden) {
-            const data = loadTable(`${path}${filename}.yaml`);
-            if (data) {
-                tables[tableName] = data;
-            } else {
-                console.error(`[ERROR] Table ${tableName} has no data.`);
-            }
+            loadTable(tableName, path, filename);
         }
     }
 };
 
+// TODO need to impl flags/nested rolls, may want to refactor this code a bit to make it easier to read
 const rollTable = (table) => {
     if(table) {
         const diceRoll = dice.rollNumeric(dice.format(table.info.diceString));

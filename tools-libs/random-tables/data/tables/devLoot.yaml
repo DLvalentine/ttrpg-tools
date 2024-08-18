@@ -1,12 +1,16 @@
 # devLoot.yaml
 # Test data for "nested tables" feature
 
+# TODO need to document this, esp. the part where, currently, the requirement is that the dependency is in the same path and the dependency name matches the filename. Think on it, maybe make this an array of objs instead
 info:
   name: (Dev) Loot
   description: Test table containing loot rewards
   diceString: d1 # only one result, for testing
   properties: [result, quantity]
-  dependencies: [devGems] # TODO need to document this, esp. the part where, currently, the requirement is that the dependency is in the same path and the dependency name matches the filename. Think on it, maybe make this an array of objs instead
+  dependencies: [devGems] # TODO need to document this: can either be array of filenames in same path, or list of dependency objects: {tablename, filename, path} of which only two (tablename and path) are really required
+    #- tablename: devGems
+    #  filename: devGems
+    #  path: "./tools-libs/random-tables/data/tables/someOtherPath/"
 values:
   - roll: 1
     flags: [nestedResult, variableQuantity] # TODO see if this works as intended, or if an object would be better

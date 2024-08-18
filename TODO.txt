@@ -3,14 +3,14 @@ tools-libs/random-tables/data/manifest.yaml:# TODO would be nice to have a conce
 tools-libs/random-tables/data/tables/_template.yaml:# TODO: add supported flag documentation
 tools-libs/random-tables/data/tables/_template.yaml:# TODO: add dependencies documentation
 tools-libs/random-tables/data/tables/devLoot.yaml:  dependencies: [devGems] # TODO need to document this: can either be array of filenames in same path, or list of dependency objects: {tablename, filename, path} of which only two (tablename and path) are really required
-tools-libs/random-tables/data/tables/devLoot.yaml:    flags: [nestedResult, variableQuantity] # TODO see if this works as intended, or if an object would be better
-tools-libs/random-tables/random-tables.js:// TODO: Support nested tables: either results, rolls, or both? I think nested results are more viable. E.g. a loot table where a "sack of gems" contains a gem type
-tools-libs/random-tables/random-tables.js:// TODO: Support flags: may need a more robust way of doing it, but maintain the list in _template.yaml in new roll type examples to show what flags are available and how they work. I'm using strings because they're easier to read, but not as performant
-tools-libs/random-tables/random-tables.js:// TODO: display style? would be cool to display things instead of dumping the table
-tools-libs/random-tables/random-tables.js:// TODO: func documentation
-tools-libs/random-tables/random-tables.js:// TODO: printf formatting in tables? Should that be another flag?
+tools-libs/random-tables/random-tables.js:// TODO: document flags in _template.yaml
+tools-libs/random-tables/random-tables.js:// TODO: display style? would be cool to display things instead of dumping the table. Could use YAML's multi-line string thing and add the field like so: [result] to "inject" it
+tools-libs/random-tables/random-tables.js:// TODO: printf formatting in tables? Should that be another flag? Should that just be the multi-line thing I describe above?
 tools-libs/random-tables/random-tables.js:// TODO: What if we want mixed nested rolls with variable quantity - e.g. a sack of gems: 1 ruby, 1 diamond, 2 emerald. I may want to break this up a little if I keep adding features lol
-tools-libs/random-tables/random-tables.js:// TODO need to impl flags/nested rolls, may want to refactor this code a bit to make it easier to read
+tools-libs/random-tables/random-tables.js:                let result = _.pick(value, table.info.properties); // TODO not sure if I like `properties` as a name. It isn't super clear. Maybe...columns? idk yet. Think about it.
+tools-libs/random-tables/random-tables.js:                // TODO could probably simplify this. Don't need to iterate over all flags, just search for ones we care about
+tools-libs/random-tables/random-tables.js:                // TODO need to think about how we're going to impl `plural` so that we can merge the tables down while maintaining the quantities. e.g. 2x ruby instead of just ruby once
+tools-libs/random-tables/random-tables.js:                // TODO `plural` should only be valid if the field is nested...
 tools-libs/random-tables/random-tables.js:// TODO if I plan to use this with further projects (UNE or Mythic GME tool?), we should not assume we want to load from manifest by default
 tools-libs/random-tables/random-tables.js:// TODO ^ if that's done, we probably want to expose loadTablesFromManifest and loadTable, too, and remove `tables` - which would require usage updates
 ttrpg-tools.js:// TODO: Would be nice to have mythic gme tools as their own lib. 

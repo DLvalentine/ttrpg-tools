@@ -76,7 +76,7 @@ const rollTable = (table) => {
             const exactRoll = (!(Array.isArray(value.roll)) && diceRoll === value.roll);
 
             if( rollWithinRange || exactRoll) {
-                let result = _.pick(value, table.info.properties);
+                let result = _.pick(value, table.info.properties); // TODO not sure if I like `properties` as a name. It isn't super clear. Maybe...columns? idk yet. Think about it.
 
                 // Check for a quantity field, to see if we need to roll on that, too
                 // Checking on value instead of result, since quantity might be hidden

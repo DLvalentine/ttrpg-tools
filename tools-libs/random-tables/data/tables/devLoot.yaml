@@ -5,7 +5,7 @@ info:
   name: (Dev) Loot
   description: Test table containing loot rewards
   diceString: d1 # only one result, for testing
-  exposed: [description, contents]
+  exposed: [description, contents, quantity]
   dependencies: [devGems] # TODO need to document this: can either be array of filenames in same path, or list of dependency objects: {tablename, filename, path} of which only two (tablename and path) are really required
     #- tablename: devGems
     #  filename: devGems

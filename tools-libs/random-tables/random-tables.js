@@ -93,6 +93,7 @@ const rollTable = (table) => {
                 // TODO / NOTE: I think this only allows for one nested roll, too. I need to fix that.
                 // TODO / NOTE: I think a similar problem exists with quantity, too. If I have multiple plural how do I resolve quantity? Another flag?
                 // NOTE: Could probably knock out both problems at once. Collect all the nested fields, then for each run the code below to do nesting and check for plural
+                // TODO: Will want to update docs for: nested_, plural, and quantity if/when I fix this
                 if(value.flags) {
                     const nestedField = value.flags.find(flag => flag.includes(flags.nested)).split('_')[1];
                     const nestedTableName = result[nestedField];
@@ -102,7 +103,6 @@ const rollTable = (table) => {
 
                         // TODO / NOTE: plural currently only affects the first nested field. probably need to go the plural_field route and verify that way, in the event that you have multiple plural nested fields
                         // TODO: I'll take care of that once I get caught up on documentation
-                        // TODO: update documentation once this is working
                         if(value.flags.find(flag => flag.includes(flags.plural)) && quantity) {
                             let pluralResult = [];
                             

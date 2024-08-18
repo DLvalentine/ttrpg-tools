@@ -14,7 +14,7 @@ info:
   #  path: path # needs to be fully qualified path starting from path of ttrpg-tools.js
 values:
   - roll: 1 # Value to be compared against to select the result
-#   flags: [nested_<field>, plural] # Special features for rolls. nested_<field> assumes the field is a table name, and will roll on that table for its value. plural requires a nested field and  a `quantity` field and will roll that nested field that many times. # TODO update plural
+#   flags: [nested_<field>, plural] # Special features for rolls. nested_<field> assumes the field is a table name, and will roll on that table for its value. plural requires a nested field and  a `quantity` field and will roll that nested field that many times.
     result: Some Result # Whatever you want it to be. Right now this is a string. Additional fields to be added at your discretion
 #   quantity: 2 # If plural, that's how many times we'll roll the nested table. Otherwise, this is just a plain old field.
 #   ...or...

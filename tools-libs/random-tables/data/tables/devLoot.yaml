@@ -7,9 +7,6 @@ info:
   diceString: d1 # only one result, for testing
   exposed: [description, contents, quantity]
   dependencies: [devGems]
-    #- tablename: devGems
-    #  filename: devGems
-    #  path: "./tools-libs/random-tables/data/tables/someOtherPath/"
 values:
   - roll: 1
     flags: [nested_contents, plural]

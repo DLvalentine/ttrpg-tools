@@ -2,6 +2,8 @@
 // TODO: Support flags: may need a more robust way of doing it, but maintain the list in _template.yaml in new roll type examples to show what flags are available and how they work. I'm using strings because they're easier to read, but not as performant
 // TODO: display style? would be cool to display things instead of dumping the table
 // TODO: func documentation
+// TODO: printf formatting in tables? Should that be another flag?
+// TODO: What if we want mixed nested rolls with variable quantity - e.g. a sack of gems: 1 ruby, 1 diamond, 2 emerald
 import _ from 'lodash';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';

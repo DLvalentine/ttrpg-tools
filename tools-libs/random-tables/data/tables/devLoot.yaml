@@ -5,7 +5,7 @@ info:
   name: (Dev) Loot
   description: Test table containing loot rewards
   diceString: d1 # only one result, for testing
-  properties: [result, quantity]
+  properties: [result, quantity, description]
   dependencies: [devGems] # TODO need to document this: can either be array of filenames in same path, or list of dependency objects: {tablename, filename, path} of which only two (tablename and path) are really required
     #- tablename: devGems
     #  filename: devGems
@@ -15,3 +15,4 @@ values:
     flags: [nestedResult, variableQuantity] # TODO see if this works as intended, or if an object would be better
     result: devGems
     quantity: [1, 4]
+    description: A sack of gems

@@ -6,7 +6,7 @@ info:
   description: Test table containing loot rewards
   diceString: d1 # only one result, for testing
   properties: [result, quantity]
-  dependencies: [devGems]
+  dependencies: [devGems] # TODO need to document this, esp. the part where, currently, the requirement is that the dependency is in the same path and the dependency name matches the filename. Think on it, maybe make this an array of objs instead
 values:
   - roll: 1
     flags: [nestedResult, variableQuantity] # TODO see if this works as intended, or if an object would be better

@@ -3,7 +3,7 @@
 // TODO: display style? would be cool to display things instead of dumping the table
 // TODO: func documentation
 // TODO: printf formatting in tables? Should that be another flag?
-// TODO: What if we want mixed nested rolls with variable quantity - e.g. a sack of gems: 1 ruby, 1 diamond, 2 emerald
+// TODO: What if we want mixed nested rolls with variable quantity - e.g. a sack of gems: 1 ruby, 1 diamond, 2 emerald. I may want to break this up a little if I keep adding features lol
 import _ from 'lodash';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';

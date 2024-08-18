@@ -8,6 +8,8 @@ tools-libs/random-tables/random-tables.js:// TODO: Support nested tables: either
 tools-libs/random-tables/random-tables.js:// TODO: Support flags: may need a more robust way of doing it, but maintain the list in _template.yaml in new roll type examples to show what flags are available and how they work. I'm using strings because they're easier to read, but not as performant
 tools-libs/random-tables/random-tables.js:// TODO: display style? would be cool to display things instead of dumping the table
 tools-libs/random-tables/random-tables.js:// TODO: func documentation
+tools-libs/random-tables/random-tables.js:// TODO: printf formatting in tables? Should that be another flag?
+tools-libs/random-tables/random-tables.js:// TODO: What if we want mixed nested rolls with variable quantity - e.g. a sack of gems: 1 ruby, 1 diamond, 2 emerald. I may want to break this up a little if I keep adding features lol
 tools-libs/random-tables/random-tables.js:// TODO need to impl flags/nested rolls, may want to refactor this code a bit to make it easier to read
 tools-libs/random-tables/random-tables.js:// TODO if I plan to use this with further projects (UNE or Mythic GME tool?), we should not assume we want to load from manifest by default
 tools-libs/random-tables/random-tables.js:// TODO ^ if that's done, we probably want to expose loadTablesFromManifest and loadTable, too, and remove `tables` - which would require usage updates

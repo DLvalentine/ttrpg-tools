@@ -1,8 +1,6 @@
-// TODO: Support nested tables: either results, rolls, or both? I think nested results are more viable. E.g. a loot table where a "sack of gems" contains a gem type
-// TODO: Support flags: may need a more robust way of doing it, but maintain the list in _template.yaml in new roll type examples to show what flags are available and how they work. I'm using strings because they're easier to read, but not as performant
-// TODO: display style? would be cool to display things instead of dumping the table
-// TODO: func documentation
-// TODO: printf formatting in tables? Should that be another flag?
+// TODO: document flags in _template.yaml
+// TODO: display style? would be cool to display things instead of dumping the table. Could use YAML's multi-line string thing and add the field like so: [result] to "inject" it
+// TODO: printf formatting in tables? Should that be another flag? Should that just be the multi-line thing I describe above?
 // TODO: What if we want mixed nested rolls with variable quantity - e.g. a sack of gems: 1 ruby, 1 diamond, 2 emerald. I may want to break this up a little if I keep adding features lol
 import _ from 'lodash';
 import * as fs from 'fs';
@@ -57,19 +55,33 @@ const loadTablesFromManifest = () => {
     }
 };
 
-// TODO need to impl flags/nested rolls, may want to refactor this code a bit to make it easier to read
+const flags = {
+    nested: 'nested'
+};
+
 const rollTable = (table) => {
     if(table) {
         const diceRoll = dice.rollNumeric(dice.format(table.info.diceString));
 
         for(let value of table.values) {
-            if(Array.isArray(value.roll)) {
-                // This roll has a range of possible values
-                if(diceRoll >= value.roll[0] && diceRoll <= value.roll[1]) {
-                    return _.pick(value, table.info.properties);
+            let rollWithinRange = (Array.isArray(value.roll) && diceRoll >= value.roll[0] && diceRoll <= value.roll[1]);
+            let exactRoll = (!(Array.isArray(value.roll)) && diceRoll === value.roll);
+
+            if( rollWithinRange || exactRoll) {
+                let result = _.pick(value, table.info.properties);
+
+                // Check to see if we have a nested roll, then roll it
+                if(value.flags) {
+                    value.flags.forEach(flag => {
+                        const [flagName, flaggedField] = flag.split('_');
+
+                        if(flagName === flags.nested) {
+                            const nestedTableName = result[flaggedField];
+                            result[flaggedField] = rollTable(tables[nestedTableName]);
+                        }
+                    });
                 }
-            } else if (diceRoll === value.roll) {
-                return _.pick(value, table.info.properties);
+                return result;
             }
         }
         console.error(`[ERROR] No result found in ${table.name} for roll: ${diceRoll}. Check your data!`)

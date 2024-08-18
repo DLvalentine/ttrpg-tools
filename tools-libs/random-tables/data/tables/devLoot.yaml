@@ -5,14 +5,14 @@ info:
   name: (Dev) Loot
   description: Test table containing loot rewards
   diceString: d1 # only one result, for testing
-  properties: [result, quantity, description]
+  properties: [description, result]
   dependencies: [devGems] # TODO need to document this: can either be array of filenames in same path, or list of dependency objects: {tablename, filename, path} of which only two (tablename and path) are really required
     #- tablename: devGems
     #  filename: devGems
     #  path: "./tools-libs/random-tables/data/tables/someOtherPath/"
 values:
   - roll: 1
-    flags: [nestedResult, variableQuantity] # TODO see if this works as intended, or if an object would be better
+    flags: [nested_result] # TODO Would be neat if we had a flag that rolled the nested table "quantity" times. E.g. if we roll gems, and the quantity is 2, roll that table twice, don't just give the same result twice. Flag because that might not be desired default behavior
     result: devGems
-    quantity: [1, 4]
+    # todo: add quantity "special" field, that either accepts a single quantity, or a range (like rolls) and rolls the quantity
     description: A sack of gems

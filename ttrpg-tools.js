@@ -111,7 +111,6 @@ function tool_PdfPageToJpeg() {
 /**
  * Gathers information from the user, then uses dice.js that I wrote to roll some dice.
  * Will keep running until a user quits, then goes back to main menu.
- * FIXME: If you just hit ENTER on this menu it closes the app lmao, probably because I don't have us return to the main menu or whatever
  */
 function tool_diceRoller() {
     rl.question('\nEnter a dice string and press ENTER or E[x]it:\n', str => {

@@ -5,15 +5,15 @@ info:
   name: (Dev) Gems
   description: Test table containing gems
   diceString: d6 # only one result, for testing
-  properties: [result]
+  properties: [gem]
 values:
   - roll: 1
-    result: Ruby
+    gem: Ruby
   - roll: 2
-    result: Opal
+    gem: Opal
   - roll: 3
-    result: Diamond
+    gem: Diamond
   - roll: 4
-    result: Emerald
+    gem: Emerald
   - roll: [5, 6]
-    result: Pearl
+    gem: Pearl

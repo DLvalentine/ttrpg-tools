@@ -154,7 +154,7 @@ function tool_randomTables() {
                 const selectedTableIDX = parseInt(str, 10) - 1;
                 console.clear();
                 console.log(`Rolling against ${Object.values(randomTables.tables)[selectedTableIDX].info.name}...`);
-                console.log(randomTables.rollTable(Object.values(randomTables.tables)[selectedTableIDX]));
+                console.table(randomTables.rollTable(Object.values(randomTables.tables)[selectedTableIDX]));
             } catch(_){};
             flush();
             tool_randomTables();

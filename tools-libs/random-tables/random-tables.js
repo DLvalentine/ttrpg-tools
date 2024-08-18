@@ -1,7 +1,14 @@
+// -- DOCS --
 // TODO: document flags in _template.yaml
+
+// -- DISPLAY --
 // TODO: display style? would be cool to display things instead of dumping the table. Could use YAML's multi-line string thing and add the field like so: [result] to "inject" it
 // TODO: printf formatting in tables? Should that be another flag? Should that just be the multi-line thing I describe above?
+// NOTE: May need to adjust ideas here, since I switched to using console.table in the meantime
+
+// -- FLAGS / FEATURES --
 // TODO: What if we want mixed nested rolls with variable quantity - e.g. a sack of gems: 1 ruby, 1 diamond, 2 emerald. I may want to break this up a little if I keep adding features lol
+
 import _ from 'lodash';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
@@ -56,7 +63,8 @@ const loadTablesFromManifest = () => {
 };
 
 const flags = {
-    nested: 'nested'
+    nested: 'nested',
+    plural: 'plural'
 };
 
 const rollTable = (table) => {
@@ -64,13 +72,30 @@ const rollTable = (table) => {
         const diceRoll = dice.rollNumeric(dice.format(table.info.diceString));
 
         for(let value of table.values) {
-            let rollWithinRange = (Array.isArray(value.roll) && diceRoll >= value.roll[0] && diceRoll <= value.roll[1]);
-            let exactRoll = (!(Array.isArray(value.roll)) && diceRoll === value.roll);
+            const rollWithinRange = (Array.isArray(value.roll) && diceRoll >= value.roll[0] && diceRoll <= value.roll[1]);
+            const exactRoll = (!(Array.isArray(value.roll)) && diceRoll === value.roll);
 
             if( rollWithinRange || exactRoll) {
                 let result = _.pick(value, table.info.properties);
 
+                // Check for a quantity field, to see if we need to roll on that, too
+                // Checking on value instead of result, since quantity might be hidden
+                // Checking before rolling nested, too, since rolling N number of times on a nested table is supported
+                if(value.quantity) {
+                    if(Array.isArray(value.quantity)) {
+                        const rolledQuantity = _.random(value.quantity[0], value.quantity[1]);
+
+                        // Update result's quantity if exposed
+                        if(result.quantity) {
+                            result.quantity = rolledQuantity;
+                        }
+                    }
+                }
+
                 // Check to see if we have a nested roll, then roll it
+                // TODO could probably simplify this. Don't need to iterate over all flags, just search for ones we care about
+                // TODO need to think about how we're going to impl `plural` so that we can merge the tables down while maintaining the quantities. e.g. 2x ruby instead of just ruby once
+                // TODO `plural` should only be valid if the field is nested...
                 if(value.flags) {
                     value.flags.forEach(flag => {
                         const [flagName, flaggedField] = flag.split('_');

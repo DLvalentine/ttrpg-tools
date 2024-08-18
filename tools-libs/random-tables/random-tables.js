@@ -4,7 +4,8 @@
 // -- DISPLAY --
 // TODO: display style? would be cool to display things instead of dumping the table. Could use YAML's multi-line string thing and add the field like so: [result] to "inject" it
 // TODO: printf formatting in tables? Should that be another flag? Should that just be the multi-line thing I describe above?
-// NOTE: May need to adjust ideas here, since I switched to using console.table in the meantime
+// TODO: plural nested rolls are especially bad, but not horrible. I think they could benefit most from this.
+// NOTE: Using console.table in the meantime.
 
 import _ from 'lodash';
 import * as fs from 'fs';
@@ -92,7 +93,6 @@ const rollTable = (table) => {
                 }
 
                 // Check to see if we have a nested roll, then roll it
-                // TODO see if we can clean up the output of this a little...maybe use an object instead of array? e.g. want Ruby: 2 instead of Ruby, Ruby
                 if(value.flags) {
                     const nestedField = value.flags.find(flag => flag.includes(flags.nested)).split('_')[1];
                     const nestedTableName = result[nestedField];

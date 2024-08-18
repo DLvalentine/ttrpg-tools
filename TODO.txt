@@ -3,6 +3,7 @@ tools-libs/random-tables/random-tables.js:// TODO: display style? would be cool 
 tools-libs/random-tables/random-tables.js:// TODO: printf formatting in tables? Should that be another flag? Should that just be the multi-line thing I describe above?
 tools-libs/random-tables/random-tables.js:// TODO: plural nested rolls are especially bad, but not horrible. I think they could benefit most from this.
 tools-libs/random-tables/random-tables.js:                // TODO / NOTE: I think this only allows for one nested roll, too. I need to fix that.
+tools-libs/random-tables/random-tables.js:                // TODO / NOTE: I think a similar problem exists with quantity, too. If I have multiple plural how do I resolve quantity? Another flag?
 tools-libs/random-tables/random-tables.js:                        // TODO / NOTE: plural currently only affects the first nested field. probably need to go the plural_field route and verify that way, in the event that you have multiple plural nested fields
 tools-libs/random-tables/random-tables.js:                        // TODO: I'll take care of that once I get caught up on documentation
 tools-libs/random-tables/random-tables.js:                        // TODO: update documentation once this is working

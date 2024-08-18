@@ -1,0 +1,32 @@
+tools-libs/random-tables/data/manifest.yaml:# TODO would be nice to have a concept of ondemand/load-time if we end up with a sufficiently large number of tables
+tools-libs/random-tables/data/tables/_template.yaml:# TODO: add supported flag documentation
+tools-libs/random-tables/data/tables/_template.yaml:# TODO: add dependencies documentation
+tools-libs/random-tables/data/tables/devLoot.yaml:    flags: [nestedResult, variableQuantity] # TODO see if this works as intended, or if an object would be better
+tools-libs/random-tables/random-tables.js:// TODO: Support nested tables: either results, rolls, or both? I think nested results are more viable. E.g. a loot table where a "sack of gems" contains a gem type
+tools-libs/random-tables/random-tables.js:// TODO: Support flags: may need a more robust way of doing it, but maintain the list in _template.yaml in new roll type examples to show what flags are available and how they work. I'm using strings because they're easier to read, but not as performant
+tools-libs/random-tables/random-tables.js:// TODO: table manifest dependencies, or other validation (dependencies should be hidden?) - may want to refactor loadTable/load..Manifest to make this cleaner, too. E.g. loadManifest just reads the list, loadTable appends to the tables obj, etc.
+tools-libs/random-tables/random-tables.js:// TODO: display style? would be cool to display things instead of dumping the table
+tools-libs/random-tables/random-tables.js:// TODO if I plan to use this with further projects (UNE or Mythic GME tool?), we should not assume we want to load from manifest by default
+tools-libs/random-tables/random-tables.js:// TODO ^ if that's done, we probably want to expose loadTablesFromManifest and loadTable, too, and remove `tables` - which would require usage updates
+ttrpg-tools.js:// TODO: Would be nice to have mythic gme tools as their own lib. 
+ttrpg-tools.js:// TODO: same as above, but with other tools like UNE.
+ttrpg-tools.js:let rl = readline.createInterface({ input, output, prompt: '>' }); // TODO > prompt, history would be nice to have (prompt doesn't seem to work here?)
+ttrpg-tools.js:    // FIXME: we should check to make sure this file exists before continuing
+ttrpg-tools.js:    // FIXME: see above
+ttrpg-tools.js:    // TODO: 9 times out of 10 I want to open or view the file after generating it, maybe have explorer open when we're done? or ask user if they want that?
+tools-libs/random-tables/data/manifest.yaml:# TODO would be nice to have a concept of ondemand/load-time if we end up with a sufficiently large number of tables
+tools-libs/random-tables/data/tables/_template.yaml:# TODO: add supported flag documentation
+tools-libs/random-tables/data/tables/_template.yaml:# TODO: add dependencies documentation
+tools-libs/random-tables/data/tables/devLoot.yaml:    flags: [nestedResult, variableQuantity] # TODO see if this works as intended, or if an object would be better
+tools-libs/random-tables/random-tables.js:// TODO: Support nested tables: either results, rolls, or both? I think nested results are more viable. E.g. a loot table where a "sack of gems" contains a gem type
+tools-libs/random-tables/random-tables.js:// TODO: Support flags: may need a more robust way of doing it, but maintain the list in _template.yaml in new roll type examples to show what flags are available and how they work. I'm using strings because they're easier to read, but not as performant
+tools-libs/random-tables/random-tables.js:// TODO: table manifest dependencies, or other validation (dependencies should be hidden?) - may want to refactor loadTable/load..Manifest to make this cleaner, too. E.g. loadManifest just reads the list, loadTable appends to the tables obj, etc.
+tools-libs/random-tables/random-tables.js:// TODO: display style? would be cool to display things instead of dumping the table
+tools-libs/random-tables/random-tables.js:// TODO if I plan to use this with further projects (UNE or Mythic GME tool?), we should not assume we want to load from manifest by default
+tools-libs/random-tables/random-tables.js:// TODO ^ if that's done, we probably want to expose loadTablesFromManifest and loadTable, too, and remove `tables` - which would require usage updates
+ttrpg-tools.js:// TODO: Would be nice to have mythic gme tools as their own lib. 
+ttrpg-tools.js:// TODO: same as above, but with other tools like UNE.
+ttrpg-tools.js:let rl = readline.createInterface({ input, output, prompt: '>' }); // TODO > prompt, history would be nice to have (prompt doesn't seem to work here?)
+ttrpg-tools.js:    // FIXME: we should check to make sure this file exists before continuing
+ttrpg-tools.js:    // FIXME: see above
+ttrpg-tools.js:    // TODO: 9 times out of 10 I want to open or view the file after generating it, maybe have explorer open when we're done? or ask user if they want that?

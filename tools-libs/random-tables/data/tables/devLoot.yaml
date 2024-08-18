@@ -1,7 +1,6 @@
 # devLoot.yaml
 # Test data for "nested tables" feature
 
-# TODO need to document this, esp. the part where, currently, the requirement is that the dependency is in the same path and the dependency name matches the filename. Think on it, maybe make this an array of objs instead
 info:
   name: (Dev) Loot
   description: Test table containing loot rewards

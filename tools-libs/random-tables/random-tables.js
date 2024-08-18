@@ -29,7 +29,7 @@ const loadTable = (tableName, path, filename) => {
                     const isDepObject = typeof dep === Object;
 
                     const depTableName = isDepObject ? dep.tablename || dep.filename : dep;
-                    const depPath = isDepObject ? dep.path : path;
+                    const depPath = isDepObject ? dep.path || path : path;
                     const depFilename = isDepObject ? dep.filename || dep.tablename : dep;
 
                     loadTable(depTableName, depPath, depFilename);

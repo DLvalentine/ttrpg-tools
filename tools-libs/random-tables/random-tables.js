@@ -1,6 +1,6 @@
 // TODO: Support nested tables: either results, rolls, or both? I think nested results are more viable. E.g. a loot table where a "sack of gems" contains a gem type
 // TODO: Support flags: may need a more robust way of doing it, but maintain the list in _template.yaml in new roll type examples to show what flags are available and how they work. I'm using strings because they're easier to read, but not as performant
-// TODO: table manifest dependencies, or other validation (dependencies should be hidden?)
+// TODO: table manifest dependencies, or other validation (dependencies should be hidden?) - may want to refactor loadTable/load..Manifest to make this cleaner, too. E.g. loadManifest just reads the list, loadTable appends to the tables obj, etc.
 // TODO: display style? would be cool to display things instead of dumping the table
 import _ from 'lodash';
 import * as fs from 'fs';

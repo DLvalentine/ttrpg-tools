@@ -1,0 +1,21 @@
+{
+  "name": "ttrpg-tools",
+  "version": "2.1.0",
+  "description": "A bunch of little tools for my TTRPG shenanigans",
+  "main": "ttrpg-tools.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Valentine",
+  "license": "MIT",
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21",
+    "pdf-poppler": "^0.2.1"
+  },
+  "type": "module",
+  "engines": {
+    "npm": ">=10.8.1",
+    "node": ">=20.16.0"
+  }
+}

@@ -1,0 +1,31 @@
+# manifest.yaml
+# Used to hold the paths to tables that can be loaded into random-tables.js
+# TODO would be nice to have a concept of ondemand/load-time if we end up with a sufficiently large number of tables
+
+# paths
+# Used to create anchors that point to table paths. Default is ./tools-libs/random-tables/data/tables/ that should exist in the same directory as manifest. If you want to break them up...
+# ...say, into monster/loot/etc., you could create a new anchor like so:
+#
+# monster &monsterTablePath: 
+#   path: "./tools-libs/random-tables/data/tables/monsters/"
+#
+# For usage in tables structure like so
+# tables:
+#   tableName:
+#     <<: *monsterTablePath
+#     filename: filename # extension is implied in client code
+#     hidden: [true/false] # (optional) whether or not to load this table *at all*, will be treated as false in client code if not included in table def
+paths:
+  base: &basePath 
+    path: "./tools-libs/random-tables/data/tables/"
+
+# tables
+# Structure mapping the internal name of the table and its path, filename, and any other optional properties.
+tables:
+  _template:
+    <<: *basePath
+    filename: _template
+    hidden: true # Unless I'm working on developing new features for random-table, this table should be hidden
+  devLoot:
+    <<: *basePath
+    filename: devLoot

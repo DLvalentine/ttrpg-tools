@@ -1,0 +1,21 @@
+# devGems.yaml
+# Test data for "nested tables" feature
+
+info:
+  name: (Dev) Gems
+  description: Test table containing gems
+  diceString: d6 # only one result, for testing
+  properties: [result]
+values:
+  - roll: 1
+    result: Ruby
+  - roll: 2
+    result: Opal
+  - roll: 3
+    result: Diamond
+  - roll: 4
+    result: Emerald
+  - roll: 5
+    result: Pearl
+  - roll: 6
+    result: Amethyst

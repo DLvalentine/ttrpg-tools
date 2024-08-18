@@ -1,0 +1,15 @@
+# _template.yaml -> Name of file. Ideally matches what is used as its internal name in manifest.yaml 
+# Description of table, reference materials, when to use, etc.
+# TODO: add supported flag documentation
+# TODO: add dependencies documentation
+
+info:
+  name: Template Table # Display name: what will be shown to user when listing tables
+  description: To be used to demonstrate usage of random-tables.js # Short description of what the table does or is for
+  diceString: d6 # Valid formatted dice string to be used by dice.js when rolling against this table. We don't necessarily need it, but it adds a layer of reliability to your data. We could have used a d2 here, but wanted to show off ranges below.
+  properties: [result] # Properties of `table` below, that you wish to have returned from the table roll. `roll` should generally be left out of this list.
+values:
+  - roll: 1 # Value to be compared against to select the result
+    result: Some Result # Whatever you want it to be. Right now this is a string. Additional properties to be added at your discretion
+  - roll: [2, 6] # Similar to single rolls, but this should be a range. E.g. if a 2, 4, 5, or 6 is rolled, we will get this result
+    result: Some Ranged Result

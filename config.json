@@ -1,0 +1,10 @@
+{
+    "originPath": "C:\\Users\\david\\Documents\\TTRPG\\",
+    "systems": {
+        "dd5e": "D_D\\",
+        "dcc": "DCC\\",
+        "pf1e": "Pathfinder\\",
+        "cyberpunk": "Cyberpunk\\"
+    },
+    "destPath": "C:\\Users\\david\\Documents\\TTRPG\\foundry\\assets"
+}

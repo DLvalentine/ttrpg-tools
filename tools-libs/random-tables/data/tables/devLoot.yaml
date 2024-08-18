@@ -1,0 +1,14 @@
+# devLoot.yaml
+# Test data for "nested tables" feature
+
+info:
+  name: (Dev) Loot
+  description: Test table containing loot rewards
+  diceString: d1 # only one result, for testing
+  properties: [result, quantity]
+  dependencies: [devGems]
+values:
+  - roll: 1
+    flags: [nestedResult, variableQuantity] # TODO see if this works as intended, or if an object would be better
+    result: devGems
+    quantity: [1, 4]

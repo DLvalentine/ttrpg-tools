@@ -90,6 +90,8 @@ const rollTable = (table) => {
                 }
 
                 // Check to see if we have a nested roll, then roll it
+                // TODO / NOTE: I think this only allows for one nested roll, too. I need to fix that.
+                // NOTE: Could probably knock out both problems at once. Collect all the nested fields, then for each run the code below to do nesting and check for plural
                 if(value.flags) {
                     const nestedField = value.flags.find(flag => flag.includes(flags.nested)).split('_')[1];
                     const nestedTableName = result[nestedField];

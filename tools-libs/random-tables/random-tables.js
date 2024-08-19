@@ -59,7 +59,7 @@ const loadTablesFromManifest = () => {
 
 // Tokens to be used when parsing field values
 const tokens = {
-    nested: '$n|' // When found, we know the field value needs to be determined from a roll on another table. May also have a quantity. E.g. $n|table:2 or $n|table:[1,4] for a rolled quantity
+    table: '$t|' // When found, we know the field value needs to be determined from a roll on another table. May also have a quantity. E.g. $n|table:2 or $n|table:[1,4] for a rolled quantity
 };
 
 const getOrRollQuantity = (rawQuantity, parse = false) => {
@@ -97,6 +97,7 @@ const rollTable = (table) => {
                 }
 
                 // TODO field object + nesting + quantity, field array + nesting + quantity
+                // TODO replace all usages of "nest" with "table"
                 Object.keys(result).forEach(field => {
                     if(typeof result[field] === 'object') {
                         // todo
@@ -104,8 +105,8 @@ const rollTable = (table) => {
                         // todo
                     } else if(typeof result[field] === 'string') {
                         // TODO turn this into a function for use in object/array
-                        if(result[field].includes(tokens.nested)) {
-                            const fieldValueWithoutToken = result[field].split(tokens.nested)[1];
+                        if(result[field].includes(tokens.table)) {
+                            const fieldValueWithoutToken = result[field].split(tokens.table)[1];
                             const nestedTableName = fieldValueWithoutToken.split(':')[0];
                             const nestedTableQuantity = getOrRollQuantity(fieldValueWithoutToken.split(':')[1], true);
                             

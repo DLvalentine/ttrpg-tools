@@ -1,8 +1,5 @@
 // -- DISPLAY --
-// TODO: display style? would be cool to display things instead of dumping the table. Could use YAML's multi-line string thing and add the field like so: [result] to "inject" it
-// TODO: printf formatting in tables? Should that be another flag? Should that just be the multi-line thing I describe above?
-// TODO: nested quantity rolls are especially bad, but not horrible. I think they could benefit most from this.
-// NOTE: Using console.table in the meantime.
+// TODO Using console.dir for displaying the results of the roll. It's fine for me, but maybe one day it'd be nice to expose some richer presentation options. printf style or something, idk
 
 import _ from 'lodash';
 import * as fs from 'fs';
@@ -113,8 +110,7 @@ const rollTable = (table) => {
                     result.quantity = getOrRollQuantity(result.quantity);
                 }
 
-                // TODO field object + nesting + quantity, field array + nesting + quantity
-                // TODO replace all usages of "nest" with "table"
+                // Look over the results, and make field table rolls if needed (the field rolls on a different table)
                 Object.keys(result).forEach(field => {
                     if(Array.isArray(result[field])) {
                         result[field].forEach((item, idx, arr) => {

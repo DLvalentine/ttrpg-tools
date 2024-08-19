@@ -21,4 +21,5 @@ values:
     # quantity:
     #  - <field>: <1 or [1,4]>
     # ORRRRRR get rid of flags altogether and turn these fields into objects tbh contents = {value: <table>, quantity: <1 or [1,4]>}. Maybe would have been cleaner, but this becomes harder to maintain imo
+    # ORRRRRR find some elegant way to compress these fields. e.g. bake the rolling into plural, get rid of quantity being "special" and then we can pluralize any field. I kinda like this approach
     description: A sack of gems

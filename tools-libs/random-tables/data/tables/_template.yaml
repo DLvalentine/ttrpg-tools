@@ -14,10 +14,13 @@ info:
   #  path: path # needs to be fully qualified path starting from path of ttrpg-tools.js
 values:
   - roll: 1 # Value to be compared against to select the result
-#   flags: [nested_<field>, plural] # Special features for rolls. nested_<field> assumes the field is a table name, and will roll on that table for its value. plural requires a nested field and  a `quantity` field and will roll that nested field that many times.
     result: Some Result # Whatever you want it to be. Right now this is a string. Additional fields to be added at your discretion
-#   quantity: 2 # If plural, that's how many times we'll roll the nested table. Otherwise, this is just a plain old field.
-#   ...or...
-#   quantity: [1, 4] # Behaves similarly to quantity, but we'll randomly determine what the quantity will be within range a..b
+#   result: $t|table:[1,4] In this case, the result is a roll on <table> 1..4 times. You can just use exact numbers, too. Or no numbers or colon at all if you just want one roll
+#   result: ['$t|table:[1,4]', '$t|table2:2'] It can also be an array, but not a nested array. For that use case, make more tables.
+#   result: # Or an object! But beware, I only fully support a depth of 1 for this...for now. For that use cae, make more tables.
+#     item: $t|table
+#   quantity: 2 # This is a special field. It doesn't do any rolls, but does indicate the quantity of whatever this roll result is...
+#   ...but...
+#   quantity: [1, 4] # When given an array, that result can be random. This currently only works on `quantity` fields at top level. For nested things, I recommend splitting that into a new roll/table for now.
   - roll: [2, 6] # Similar to single rolls, but this should be a range. E.g. if a 2, 4, 5, or 6 is rolled, we will get this result
     result: Some Ranged Result

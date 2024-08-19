@@ -24,7 +24,4 @@ tables:
   _template:
     <<: *basePath
     filename: _template
-    hidden: true # Unless I'm working on developing new features for random-table, this table should be hidden
-  devLoot:
-    <<: *basePath
-    filename: devLoot
+    hidden: true # Unless I'm working on developing new features for random-tables, this table should be hidden

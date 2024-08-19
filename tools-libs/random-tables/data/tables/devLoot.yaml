@@ -1,15 +1,24 @@
 # devLoot.yaml
 # Test data for "nested tables" feature
+# TODO playing around with possible changes to nested/plural/quantity
 
 info:
   name: (Dev) Loot
   description: Test table containing loot rewards
-  diceString: d1 # only one result, for testing
+  diceString: d1 # only one possible value, for testing
   exposed: [description, contents, quantity]
   dependencies: [devGems]
 values:
   - roll: 1
-    flags: [nested_contents, plural]
+    flags: [nested_contents, plural] # proposed change: require plural to be plural_<field>.
     contents: devGems
     quantity: [1, 4]
+    # proposed change, which I think will work similar to how we have it now:
+    # quantity: 1
+    # or 
+    # quantity [1, 4]
+    # or
+    # quantity:
+    #  - <field>: <1 or [1,4]>
+    # ORRRRRR get rid of flags altogether and turn these fields into objects tbh contents = {value: <table>, quantity: <1 or [1,4]>}. Maybe would have been cleaner, but this becomes harder to maintain imo
     description: A sack of gems

@@ -92,7 +92,7 @@ const rollTable = (table) => {
                 // Check to see if we have a nested roll, then roll it
                 // TODO / NOTE: I think this only allows for one nested roll, too. I need to fix that.
                 // TODO / NOTE: I think a similar problem exists with quantity, too. If I have multiple plural how do I resolve quantity? Another flag?
-                // NOTE: Could probably knock out both problems at once. Collect all the nested fields, then for each run the code below to do nesting and check for plural
+                // NOTE: Could probably knock out both problems at once. Collect all the nested fields (filter), then for each run the code below to do nesting and check for plural. Doesn't fix the quantity issue though. Maybe quantity should also be a map
                 // TODO: Will want to update docs for: nested_, plural, and quantity if/when I fix this
                 if(value.flags) {
                     const nestedField = value.flags.find(flag => flag.includes(flags.nested)).split('_')[1];

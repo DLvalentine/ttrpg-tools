@@ -80,6 +80,23 @@ const getOrRollQuantity = (rawQuantity, parse = false) => {
     }
 }
 
+const rollFieldTable = (fieldValue) => {
+    const fieldValueWithoutToken = fieldValue.split(tokens.table)[1];
+    const fieldTableName = fieldValueWithoutToken.split(':')[0];
+    const fieldTableQuantity = getOrRollQuantity(fieldValueWithoutToken.split(':')[1], true);
+    
+    const tableRolls = [];
+    _.times(fieldTableQuantity, () => {
+        tableRolls.push(rollTable(tables[fieldTableName]));
+    });
+    
+    if(fieldTableQuantity === 1) {
+        return tableRolls[0];
+    } else {
+        return tableRolls;
+    }
+}
+
 const rollTable = (table) => {
     if(table) {
         const diceRoll = dice.rollNumeric(dice.format(table.info.diceString));
@@ -99,23 +116,17 @@ const rollTable = (table) => {
                 // TODO field object + nesting + quantity, field array + nesting + quantity
                 // TODO replace all usages of "nest" with "table"
                 Object.keys(result).forEach(field => {
-                    if(typeof result[field] === 'object') {
-                        // todo
-                    } else if(Array.isArray(result[field])) {
+                    if(Array.isArray(result[field])) {
+                        result[field].forEach((item, idx, arr) => {
+                            if(typeof item === 'string' && item.includes(tokens.table)) {
+                                arr[idx] = rollFieldTable(item);
+                            }
+                        });
+                    } else if(typeof result[field] === 'object') {
                         // todo
                     } else if(typeof result[field] === 'string') {
-                        // TODO turn this into a function for use in object/array
                         if(result[field].includes(tokens.table)) {
-                            const fieldValueWithoutToken = result[field].split(tokens.table)[1];
-                            const nestedTableName = fieldValueWithoutToken.split(':')[0];
-                            const nestedTableQuantity = getOrRollQuantity(fieldValueWithoutToken.split(':')[1], true);
-                            
-                            const nestedRolls = [];
-                            _.times(nestedTableQuantity, () => {
-                                nestedRolls.push(rollTable(tables[nestedTableName]));
-                            });
-                            
-                            result[field] = nestedTableQuantity === 1 ? nestedRolls[0] : nestedRolls;
+                            result[field] = rollFieldTable(result[field]);
                         }
                     }
                 });

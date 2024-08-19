@@ -1,14 +1,13 @@
 // TODO: Would be nice to have mythic gme tools as their own lib. 
 // TODO: same as above, but with other tools like UNE.
 
-import {default as pdfConverter} from 'pdf-poppler'
+import {default as pdfConverter} from 'pdf-poppler';
 
 import * as readline from 'node:readline';
 import {stdin as input, stdout as output} from 'node:process';
 let rl = readline.createInterface({ input, output, prompt: '>' }); // TODO > prompt, history would be nice to have (prompt doesn't seem to work here?)
 
 import config from './config.json' with { type: 'json' };
-
 import dice from './tools-libs/dice/dice.js';
 import randomTables from './tools-libs/random-tables/random-tables.js';
 
@@ -154,7 +153,7 @@ function tool_randomTables() {
                 const selectedTableIDX = parseInt(str, 10) - 1;
                 console.clear();
                 console.log(`Rolling against ${Object.values(randomTables.tables)[selectedTableIDX].info.name}...`);
-                console.table(randomTables.rollTable(Object.values(randomTables.tables)[selectedTableIDX]));
+                console.dir(randomTables.rollTable(Object.values(randomTables.tables)[selectedTableIDX]), {depth: null});
             } catch(_){};
             flush();
             tool_randomTables();

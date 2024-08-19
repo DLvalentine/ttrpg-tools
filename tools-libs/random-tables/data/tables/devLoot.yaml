@@ -14,6 +14,9 @@ values:
     # TODO test rich composition: sack of loot: [1, 4] rolled gems, 2 rolled junk, 1 rolled weapon
     # TODO test rich composition: ^ but two sacks, then ^ but [1, 4] sacks
     # TODO test rich composition and document: contents is an array
-    contents: $t|devGems:[1,4] # TODO document change: string tokens
+    contents: # $t|devGems # TODO: document array style ['$t|devGems:2', '$t|devGems'] # TODO document change: string tokens
+      a: $t|devGems # TODO document object style, ensure it is noted that I only support a depth of one for now. E.g. can't have contents -> sack -> {one, two, three} that are all nested. I don't think I'll ever need it, and it seems to me like that is a data design issue. Either new tables need to be made, or maybe ease off the randomness
+      b: A gun
+      c: $t|devGems:[1, 2]
     quantity: 1 # TODO document change: toplevel quantity behaves the same, has no impact on field nested rolls
     description: A sack of gems

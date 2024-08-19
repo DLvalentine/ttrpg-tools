@@ -186,9 +186,5 @@ function flush(reopen = true) {
         rl = readline.createInterface({ input, output, prompt: '>' });
 }
 
-// HACK : Suppress warnings from Node. I think it is bothering me about my usage of readline but eh
-setTimeout(() => {
-    console.clear();
-    // Start da program
-    main_menu();
-});
+console.clear(); // HACK : Suppress warnings from Node. I think it is bothering me about my usage of readline but eh
+main_menu();

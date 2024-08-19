@@ -1,8 +1,3 @@
-tools-libs/random-tables/data/tables/devLoot.yaml:    # TODO update template
-tools-libs/random-tables/data/tables/devLoot.yaml:    # TODO document change: toplevel flags are no more
-tools-libs/random-tables/data/tables/devLoot.yaml:    # contents: # $t|devGems # TODO: document array style ['$t|devGems:2', '$t|devGems'] # TODO document change: string tokens
-tools-libs/random-tables/data/tables/devLoot.yaml:    #   a: $t|devGems # TODO document object style, ensure it is noted that I only support a depth of one for now. E.g. can't have contents -> sack -> {one, two, three} that are all nested. I don't think I'll ever need it, and it seems to me like that is a data design issue. Either new tables need to be made, or maybe ease off the randomness
-tools-libs/random-tables/data/tables/devLoot.yaml:    quantity: 1 # TODO document change: toplevel quantity behaves the same, has no impact on field table rolls
 tools-libs/random-tables/random-tables.js:// TODO Using console.dir for displaying the results of the roll. It's fine for me, but maybe one day it'd be nice to expose some richer presentation options. printf style or something, idk
 tools-libs/random-tables/random-tables.js:// TODO if I plan to use this with further projects (UNE or Mythic GME tool?), we should not assume we want to load from manifest by default
 tools-libs/random-tables/random-tables.js:// TODO ^ if that's done, we probably want to expose loadTablesFromManifest and loadTable, too, and remove `tables` - which would require usage updates

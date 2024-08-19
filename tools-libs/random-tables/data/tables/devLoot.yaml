@@ -10,16 +10,10 @@ info:
   dependencies: [devGems]
 values:
   - roll: 1
-    flags: [nested_contents, plural] # proposed change: require plural to be plural_<field>.
-    contents: devGems
-    quantity: [1, 4]
-    # proposed change, which I think will work similar to how we have it now:
-    # quantity: 1
-    # or 
-    # quantity [1, 4]
-    # or
-    # quantity:
-    #  - <field>: <1 or [1,4]>
-    # ORRRRRR get rid of flags altogether and turn these fields into objects tbh contents = {value: <table>, quantity: <1 or [1,4]>}. Maybe would have been cleaner, but this becomes harder to maintain imo
-    # ORRRRRR find some elegant way to compress these fields. e.g. bake the rolling into plural, get rid of quantity being "special" and then we can pluralize any field. I kinda like this approach
+    # TODO document change: toplevel flags are no more
+    # TODO test rich composition: sack of loot: [1, 4] rolled gems, 2 rolled junk, 1 rolled weapon
+    # TODO test rich composition: ^ but two sacks, then ^ but [1, 4] sacks
+    # TODO test rich composition and document: contents is an array
+    contents: $n|devGems:[1,4] # TODO document change: string tokens
+    quantity: 1 # TODO document change: toplevel quantity behaves the same, has no impact on field nested rolls
     description: A sack of gems

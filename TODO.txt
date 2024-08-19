@@ -1,11 +1,17 @@
+tools-libs/random-tables/data/tables/devLoot.yaml:# TODO playing around with possible changes to nested/plural/quantity
+tools-libs/random-tables/data/tables/devLoot.yaml:    # TODO document change: toplevel flags are no more
+tools-libs/random-tables/data/tables/devLoot.yaml:    # TODO test rich composition: sack of loot: [1, 4] rolled gems, 2 rolled junk, 1 rolled weapon
+tools-libs/random-tables/data/tables/devLoot.yaml:    # TODO test rich composition: ^ but two sacks, then ^ but [1, 4] sacks
+tools-libs/random-tables/data/tables/devLoot.yaml:    # TODO test rich composition and document: contents is an array
+tools-libs/random-tables/data/tables/devLoot.yaml:    contents: $n|devGems:[1,4] # TODO document change: string tokens
+tools-libs/random-tables/data/tables/devLoot.yaml:    quantity: 1 # TODO document change: toplevel quantity behaves the same, has no impact on field nested rolls
 tools-libs/random-tables/random-tables.js:// TODO: display style? would be cool to display things instead of dumping the table. Could use YAML's multi-line string thing and add the field like so: [result] to "inject" it
 tools-libs/random-tables/random-tables.js:// TODO: printf formatting in tables? Should that be another flag? Should that just be the multi-line thing I describe above?
-tools-libs/random-tables/random-tables.js:// TODO: plural nested rolls are especially bad, but not horrible. I think they could benefit most from this.
-tools-libs/random-tables/random-tables.js:                // TODO / NOTE: I think this only allows for one nested roll, too. I need to fix that.
-tools-libs/random-tables/random-tables.js:                // TODO / NOTE: I think a similar problem exists with quantity, too. If I have multiple plural how do I resolve quantity? Another flag?
-tools-libs/random-tables/random-tables.js:                // TODO: Will want to update docs for: nested_, plural, and quantity if/when I fix this
-tools-libs/random-tables/random-tables.js:                        // TODO / NOTE: plural currently only affects the first nested field. probably need to go the plural_field route and verify that way, in the event that you have multiple plural nested fields
-tools-libs/random-tables/random-tables.js:                        // TODO: I'll take care of that once I get caught up on documentation
+tools-libs/random-tables/random-tables.js:// TODO: nested quantity rolls are especially bad, but not horrible. I think they could benefit most from this.
+tools-libs/random-tables/random-tables.js:                // TODO field object + nesting + quantity, field array + nesting + quantity
+tools-libs/random-tables/random-tables.js:                        // todo
+tools-libs/random-tables/random-tables.js:                        // todo
+tools-libs/random-tables/random-tables.js:                        // TODO turn this into a function for use in object/array
 tools-libs/random-tables/random-tables.js:// TODO if I plan to use this with further projects (UNE or Mythic GME tool?), we should not assume we want to load from manifest by default
 tools-libs/random-tables/random-tables.js:// TODO ^ if that's done, we probably want to expose loadTablesFromManifest and loadTable, too, and remove `tables` - which would require usage updates
 ttrpg-tools.js:// TODO: Would be nice to have mythic gme tools as their own lib. 

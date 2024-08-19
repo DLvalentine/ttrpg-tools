@@ -1,7 +1,7 @@
 // -- DISPLAY --
 // TODO: display style? would be cool to display things instead of dumping the table. Could use YAML's multi-line string thing and add the field like so: [result] to "inject" it
 // TODO: printf formatting in tables? Should that be another flag? Should that just be the multi-line thing I describe above?
-// TODO: plural nested rolls are especially bad, but not horrible. I think they could benefit most from this.
+// TODO: nested quantity rolls are especially bad, but not horrible. I think they could benefit most from this.
 // NOTE: Using console.table in the meantime.
 
 import _ from 'lodash';
@@ -57,10 +57,28 @@ const loadTablesFromManifest = () => {
     }
 };
 
-const flags = {
-    nested: 'nested',
-    plural: 'plural'
+// Tokens to be used when parsing field values
+const tokens = {
+    nested: '$n|' // When found, we know the field value needs to be determined from a roll on another table. May also have a quantity. E.g. $n|table:2 or $n|table:[1,4] for a rolled quantity
 };
+
+const getOrRollQuantity = (rawQuantity, parse = false) => {
+    if(!rawQuantity) {
+        return 1;
+    }
+
+    let quantity = rawQuantity;
+
+    if(parse) {
+        quantity = JSON.parse(rawQuantity);
+    }
+
+    if(Array.isArray(quantity)) {
+        return _.random(quantity[0], quantity[1]);
+    } else {
+        return quantity;
+    }
+}
 
 const rollTable = (table) => {
     if(table) {
@@ -70,57 +88,42 @@ const rollTable = (table) => {
             const rollWithinRange = (Array.isArray(value.roll) && diceRoll >= value.roll[0] && diceRoll <= value.roll[1]);
             const exactRoll = (!(Array.isArray(value.roll)) && diceRoll === value.roll);
 
-            if( rollWithinRange || exactRoll) {
+            if(rollWithinRange || exactRoll) {
                 let result = _.pick(value, table.info.exposed);
-
-                // Check for a quantity field, to see if we need to roll on that, too
-                // Checking on value instead of result, since quantity might be hidden
-                // Checking before rolling nested, too, since rolling N number of times on a nested table is supported
-                let rolledQuantity;
-                if(value.quantity) {
-
-                    if(Array.isArray(value.quantity)) {
-                        rolledQuantity = _.random(value.quantity[0], value.quantity[1]);
-
-                        // Update result's quantity if exposed
-                        if(result.quantity) {
-                            result.quantity = rolledQuantity;
-                        }
-                    }
+                
+                // Quantity might not be exposed, so set it after we pick the table
+                if(result.quantity) {
+                    result.quantity = getOrRollQuantity(result.quantity);
                 }
 
-                // Check to see if we have a nested roll, then roll it
-                // TODO / NOTE: I think this only allows for one nested roll, too. I need to fix that.
-                // TODO / NOTE: I think a similar problem exists with quantity, too. If I have multiple plural how do I resolve quantity? Another flag?
-                // NOTE: Could probably knock out both problems at once. Collect all the nested fields (filter), then for each run the code below to do nesting and check for plural. Doesn't fix the quantity issue though. Maybe quantity should also be a map
-                // TODO: Will want to update docs for: nested_, plural, and quantity if/when I fix this
-                if(value.flags) {
-                    const nestedField = value.flags.find(flag => flag.includes(flags.nested)).split('_')[1];
-                    const nestedTableName = result[nestedField];
-                    
-                    if(nestedField) {
-                        const quantity = rolledQuantity || result.quantity || value.quantity;
-
-                        // TODO / NOTE: plural currently only affects the first nested field. probably need to go the plural_field route and verify that way, in the event that you have multiple plural nested fields
-                        // TODO: I'll take care of that once I get caught up on documentation
-                        if(value.flags.find(flag => flag.includes(flags.plural)) && quantity) {
-                            let pluralResult = [];
+                // TODO field object + nesting + quantity, field array + nesting + quantity
+                Object.keys(result).forEach(field => {
+                    if(typeof result[field] === 'object') {
+                        // todo
+                    } else if(Array.isArray(result[field])) {
+                        // todo
+                    } else if(typeof result[field] === 'string') {
+                        // TODO turn this into a function for use in object/array
+                        if(result[field].includes(tokens.nested)) {
+                            const fieldValueWithoutToken = result[field].split(tokens.nested)[1];
+                            const nestedTableName = fieldValueWithoutToken.split(':')[0];
+                            const nestedTableQuantity = getOrRollQuantity(fieldValueWithoutToken.split(':')[1], true);
                             
-                            _.times(quantity, () => {
-                                pluralResult.push(rollTable(tables[nestedTableName]));
+                            const nestedRolls = [];
+                            _.times(nestedTableQuantity, () => {
+                                nestedRolls.push(rollTable(tables[nestedTableName]));
                             });
-
-                            result[nestedField] = pluralResult;
-                        } else {
-                            result[nestedField] = rollTable(tables[nestedTableName]);
+                            
+                            result[field] = nestedTableQuantity === 1 ? nestedRolls[0] : nestedRolls;
                         }
                     }
-                }
+                });
+
                 return result;
             }
         }
         console.error(`[ERROR] No result found in ${table.name} for roll: ${diceRoll}. Check your data!`)
-        return null;
+        return;
     } else {
         console.error(`[ERROR] Table ${table} is not loaded or does not exist.`);
     }

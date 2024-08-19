@@ -123,7 +123,11 @@ const rollTable = (table) => {
                             }
                         });
                     } else if(typeof result[field] === 'object') {
-                        // todo
+                        Object.keys(result[field]).forEach(key => {
+                            if(typeof result[field][key] === 'string' && result[field][key].includes(tokens.table)) {
+                                result[field][key] = rollFieldTable(result[field][key]);
+                            }
+                        });
                     } else if(typeof result[field] === 'string') {
                         if(result[field].includes(tokens.table)) {
                             result[field] = rollFieldTable(result[field]);

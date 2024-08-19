@@ -1,6 +1,8 @@
 // TODO: Would be nice to have mythic gme tools as their own lib. 
 // TODO: same as above, but with other tools like UNE.
 
+import _ from 'lodash';
+
 import {default as pdfConverter} from 'pdf-poppler';
 
 import * as readline from 'node:readline';
@@ -153,7 +155,7 @@ function tool_randomTables() {
                 const selectedTableIDX = parseInt(str, 10) - 1;
                 console.clear();
                 console.log(`Rolling against ${Object.values(randomTables.tables)[selectedTableIDX].info.name}...`);
-                console.dir(randomTables.rollTable(Object.values(randomTables.tables)[selectedTableIDX]), {depth: null});
+                console.dir(randomTables.rollTable(_.cloneDeep(Object.values(randomTables.tables)[selectedTableIDX])), {depth: null});
             } catch(_){};
             flush();
             tool_randomTables();

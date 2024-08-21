@@ -21,6 +21,7 @@ import randomTables from './tools-libs/random-tables/random-tables.js';
 // Given a pdf page, convert it to jpg and output to destination. I use this mostly to take battlemaps from rpg supplements
 // and convert them to jpegs I can use on my VTTs. Might be able to use this with other sources, too, eventually. Works best with
 // "full page" content, and not something I could ctrl+c/v into paint or something
+// TODO: Lots of improvements can be made here. Reading that directory for files, looping to see if we want to do this again, etc.
 function pdfPageToJpeg(system, sourcebookFilename, page, dest = config.destPath) {
     if(!config.systems[system]) {
         console.log(`System not configured: ${system} - see config.json, and ensure directories are set up correctly.`);

@@ -4,6 +4,7 @@ tools-libs/random-tables/random-tables.js:// TODO ^ if that's done, we probably 
 ttrpg-tools.js:// TODO: Would be nice to have mythic gme tools as their own lib. 
 ttrpg-tools.js:// TODO: same as above, but with other tools like UNE.
 ttrpg-tools.js:let rl = readline.createInterface({ input, output, prompt: '>' }); // TODO > prompt, history would be nice to have (prompt doesn't seem to work here?)
+ttrpg-tools.js:// TODO: Lots of improvements can be made here. Reading that directory for files, looping to see if we want to do this again, etc.
 ttrpg-tools.js:    // FIXME: we should check to make sure this file exists before continuing
 ttrpg-tools.js:    // FIXME: see above
 ttrpg-tools.js:    // TODO: 9 times out of 10 I want to open or view the file after generating it, maybe have explorer open when we're done? or ask user if they want that?
